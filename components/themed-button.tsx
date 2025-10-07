@@ -1,3 +1,4 @@
+import { useFonts } from 'expo-font';
 import { ReactNode } from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
@@ -14,6 +15,10 @@ export function ThemedButton({
   onPress,
   style,
 }: ThemedButtonProps) {
+  const fonts = useFonts({
+    'Montserrat-Regular': require('@/assets/fonts/Montserrat-Regular.ttf'),
+  });
+
   const backgroundColors = {
     default: '#4f63ac',
     dark: '#3f4a59',
@@ -48,6 +53,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textBase: {
-    fontWeight: 'bold',
+    fontFamily: 'Montserrat-Regular',
+    fontSize: 16,
+    fontWeight: 700,
   },
 })
