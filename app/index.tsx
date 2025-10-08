@@ -1,9 +1,8 @@
+import { ThemedButton } from '@/components/themed-button';
+import { ThemedText } from '@/components/themed-text';
 import { Image } from 'expo-image';
 import { Stack, useRouter } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
-
-import { ThemedButton } from '@/components/themed-button';
-import { ThemedText } from '@/components/themed-text';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -25,12 +24,8 @@ export default function HomeScreen() {
         </ThemedText>
         <Stack.Screen options={{ headerShown: false }} />
         <View style={styles.homeButton}>
-          <ThemedButton onPress={() => router.push('/signup')}>
-            Sign Up
-          </ThemedButton>
-          <ThemedButton type="transparent" onPress={() => router.push('/login')}>
-            Log In
-          </ThemedButton>
+          <ThemedButton title="Sign Up" onPress={() => router.push('/signup')} />
+          <ThemedButton type="transparent" title="Sign In" onPress={() => router.push('/login')} />
         </View>
       </View>
     </>

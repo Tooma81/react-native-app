@@ -1,5 +1,6 @@
+import { ThemedButton } from '@/components/themed-button';
 import React, { useState } from 'react';
-import { Button, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import FormInput from './form-input';
 
 interface Field {
@@ -30,7 +31,7 @@ export default function Form({
   };
 
   return (
-    <View style={{ padding: 20 }}>
+    <View style={styles.formBase}>
       {fields.map((field) => (
         <FormInput
           key={field.name}
@@ -41,7 +42,13 @@ export default function Form({
           onChangeText={(text) => handleChange(field.name, text)}
         />
       ))}
-      <Button title={buttonLabel} onPress={() => onSubmit(values)} />
+      <ThemedButton title={buttonLabel} onPress={() => onSubmit(values)} />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  formBase: {
+    padding: 20,
+  },
+});

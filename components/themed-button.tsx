@@ -1,23 +1,18 @@
-import { useFonts } from 'expo-font';
-import { ReactNode } from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Pressable, StyleSheet, Text } from 'react-native';
 
 type ThemedButtonProps = {
-  children: ReactNode;
   type?: 'default' | 'dark' | 'transparent';
+  title: string;
   onPress: () => void;
   style?: object;
 };
 
 export function ThemedButton({
-  children,
   type = 'default',
+  title,
   onPress,
   style,
 }: ThemedButtonProps) {
-  const fonts = useFonts({
-    'Montserrat-Regular': require('@/assets/fonts/Montserrat-Regular.ttf'),
-  });
 
   const backgroundColors = {
     default: '#4f63ac',
@@ -25,34 +20,31 @@ export function ThemedButton({
     transparent: 'transparent'
   };
 
-  const textColors = {
+  const titleColors = {
     default: '#fff',
     dark: '#fff',
     transparent: '#4f63ac'
   };
 
   return (
-    <TouchableOpacity
+    <Pressable
       onPress={onPress}
       style={[styles.buttonBase, { backgroundColor: backgroundColors[type] }, style]}
     >
-      {typeof children === 'string' ? (
-        <Text style={[styles.textBase, { color: textColors[type] }]}>{children}</Text>
-      ) : (
-        children
-      )}
-    </TouchableOpacity>
+      <Text style={[styles.titleBase, { color: titleColors[type] }, style]}>{title}</Text>
+    </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   buttonBase: {
+    height: 60,
     padding: 12,
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  textBase: {
+  titleBase: {
     fontFamily: 'Montserrat-Regular',
     fontSize: 16,
     fontWeight: 700,

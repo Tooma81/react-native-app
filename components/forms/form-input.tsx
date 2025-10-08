@@ -16,6 +16,9 @@ export default function FormInput({
   placeholder,
   secureTextEntry = false,
 }: FormInputProps) {
+
+  
+
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
@@ -32,12 +35,21 @@ export default function FormInput({
 
 const styles = StyleSheet.create({
   container: { marginBottom: 15 },
-  label: { marginBottom: 5, fontWeight: '600' },
+  label: { 
+    marginBottom: 5, 
+    color: '#4f63ac',
+    fontFamily: 'Montserrat-Regular',
+    fontSize: 14,
+    fontWeight: 500, 
+  },
   input: {
+    height: 60,
     borderWidth: 1,
     borderColor: '#ccc',
     padding: 10,
     borderRadius: 8,
-    fontSize: 16,
+    fontFamily: 'Montserrat-Regular',
+    fontSize: 14,
+    fontWeight: 500, 
   },
 });
