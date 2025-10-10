@@ -1,23 +1,21 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
-interface FormInputProps {
-  label: string;
+interface TextFieldProps {
+  label: string | React.ReactNode;
   value: string;
   onChangeText: (text: string) => void;
   placeholder?: string;
   secureTextEntry?: boolean;
 }
 
-export default function FormInput({
+export default function TextField({
   label,
   value,
   onChangeText,
   placeholder,
   secureTextEntry = false,
-}: FormInputProps) {
-
-  
+}: TextFieldProps) {
 
   return (
     <View style={styles.container}>
