@@ -41,6 +41,7 @@ export default function Form({
               key={field.name}
               label={field.label} 
               value={values[field.name] as boolean}
+              onValueChange={(checked) => handleChange(field.name, checked)}
             />
           ) : (
             <TextField
