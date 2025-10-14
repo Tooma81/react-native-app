@@ -32,7 +32,7 @@ export default function TextField({
 }
 
 const styles = StyleSheet.create({
-  container: { marginBottom: 15 },
+  container: { marginBottom: 20 },
   label: { 
     marginBottom: 5, 
     color: '#4f63ac',
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     padding: 10,
-    borderRadius: 8,
+    borderRadius: 14,
     fontFamily: 'Montserrat-Regular',
     fontSize: 14,
     fontWeight: 500, 

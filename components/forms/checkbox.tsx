@@ -30,7 +30,7 @@ export default function CheckboxField({
 const styles = StyleSheet.create({
   checkboxContainer: {
     flexDirection: 'row',
-    marginBottom: 10,
+    marginBottom: 15,
   },
   checkbox: {
     height: 22,

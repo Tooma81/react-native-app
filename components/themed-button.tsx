@@ -1,8 +1,9 @@
+import React from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
 type ThemedButtonProps = {
   type?: 'default' | 'dark' | 'transparent';
-  title: string;
+  title: string | React.ReactNode;
   onPress: () => void;
   style?: object;
 };
@@ -31,7 +32,13 @@ export function ThemedButton({
       onPress={onPress}
       style={[styles.buttonBase, { backgroundColor: backgroundColors[type] }, style]}
     >
-      <Text style={[styles.titleBase, { color: titleColors[type] }, style]}>{title}</Text>
+      {typeof title === 'string' ? (
+        <Text style={[styles.titleBase, { color: titleColors[type] }]}>{title}</Text>
+      ) : (
+        React.cloneElement(title as React.ReactElement<any>, {
+          color: titleColors[type],
+        })
+      )}
     </Pressable>
   );
 }
@@ -48,5 +55,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat-Regular',
     fontSize: 16,
     fontWeight: 700,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })
