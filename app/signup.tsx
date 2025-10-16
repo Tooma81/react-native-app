@@ -26,7 +26,16 @@ export default function SignupScreen() {
   ];
 
   const handleSubmit = (values: { [key: string]: string | boolean }) => {
-    Alert.alert('Form submitted', JSON.stringify(values, null, 2))
+    //Alert.alert('Form submitted', JSON.stringify(values, null, 2))
+    if (values.Terms) {
+      if (values.name && values.email && values.password) {
+        router.push('/tabs')
+      } else {
+        Alert.alert("Please fill all fields.")
+      }
+    } else {
+      Alert.alert("You need to agree to the Terms & Privacy.")
+    }
   };
 
   return (

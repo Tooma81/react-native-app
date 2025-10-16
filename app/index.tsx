@@ -4,7 +4,7 @@ import { Image } from 'expo-image';
 import { Stack, useRouter } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function HomeScreen() {
+export default function StartScreen() {
   const router = useRouter();
 
   return (

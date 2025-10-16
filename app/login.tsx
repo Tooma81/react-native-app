@@ -17,7 +17,11 @@ export default function LoginScreen() {
   ];
 
   const handleSubmit = (values: { [key: string]: string | boolean }) => {
-    Alert.alert('Form submitted', JSON.stringify(values, null, 2))
+    if (values.name && values.email && values.password) {
+      router.push('/tabs')
+    } else {
+      Alert.alert("Please fill all fields.")
+    }
   };
 
   return (
