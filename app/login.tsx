@@ -1,13 +1,15 @@
 import { Divider } from '@/components/divider';
 import Form, { Field } from '@/components/forms/form';
 import { ThemedButton } from '@/components/themed-button';
+import { ThemedText } from '@/components/themed-text';
 import Fontisto from '@expo/vector-icons/Fontisto';
-import { Stack } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import React from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
 
 
 export default function LoginScreen() {
+  const router = useRouter();
 
   const fields: Field[] = [
     { type: 'text' ,name: 'email', label: 'Email', placeholder: 'Enter your email' },
@@ -22,7 +24,7 @@ export default function LoginScreen() {
     <>
       <Stack.Screen options={{ headerTitle: 'Sign In' }} />
 
-      <View>
+      <View style={{flex: 1}}>
         <Form fields={fields} onSubmit={handleSubmit} buttonLabel="Sign In"/>
         <View style={styles.googleContainer}>
           <Divider 
@@ -42,6 +44,18 @@ export default function LoginScreen() {
             onPress={() => Alert.alert('Google signin')} 
           />
         </View>
+        <View style={styles.signinFooter}>
+          <ThemedText>
+            Don't have an account?
+          </ThemedText>
+          <ThemedButton
+            style={{paddingLeft: 5}}
+            titleStyle={{fontSize: 14, fontWeight: 700}}
+            type='transparent' 
+            title='Sign up'
+            onPress={() => router.push('/signup')}
+          />
+        </View>
       </View>
     </>
   );
@@ -51,5 +65,14 @@ const styles = StyleSheet.create({
   googleContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  signinFooter: {
+    width: '100%',
+    height: 200,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 0, 
   },
 })

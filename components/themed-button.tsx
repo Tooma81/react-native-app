@@ -6,6 +6,7 @@ type ThemedButtonProps = {
   title: string | React.ReactNode;
   onPress: () => void;
   style?: object;
+  titleStyle?: object;
 };
 
 export function ThemedButton({
@@ -13,6 +14,7 @@ export function ThemedButton({
   title,
   onPress,
   style,
+  titleStyle
 }: ThemedButtonProps) {
 
   const backgroundColors = {
@@ -33,7 +35,7 @@ export function ThemedButton({
       style={[styles.buttonBase, { backgroundColor: backgroundColors[type] }, style]}
     >
       {typeof title === 'string' ? (
-        <Text style={[styles.titleBase, { color: titleColors[type] }]}>{title}</Text>
+        <Text style={[styles.titleBase, titleStyle, { color: titleColors[type] }]}>{title}</Text>
       ) : (
         React.cloneElement(title as React.ReactElement<any>, {
           color: titleColors[type],
