@@ -18,7 +18,7 @@ export default function LoginScreen() {
 
   const handleSubmit = (values: { [key: string]: string | boolean }) => {
     if (values.name && values.email && values.password) {
-      router.push('/tabs')
+      router.push('/home')
     } else {
       Alert.alert("Please fill all fields.")
     }

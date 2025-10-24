@@ -29,7 +29,7 @@ export default function SignupScreen() {
     //Alert.alert('Form submitted', JSON.stringify(values, null, 2))
     if (values.Terms) {
       if (values.name && values.email && values.password) {
-        router.push('/tabs')
+        router.push('/home')
       } else {
         Alert.alert("Please fill all fields.")
       }
