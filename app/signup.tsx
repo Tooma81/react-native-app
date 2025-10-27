@@ -3,6 +3,7 @@ import Form, { Field } from '@/components/forms/form';
 import { ThemedButton } from '@/components/themed-button';
 import { ThemedText } from '@/components/themed-text';
 import Fontisto from '@expo/vector-icons/Fontisto';
+import axios from "axios";
 import { Stack, useRouter } from 'expo-router';
 import React from 'react';
 import { Alert, StyleSheet, Text, View } from 'react-native';
@@ -29,7 +30,7 @@ export default function SignupScreen() {
     //Alert.alert('Form submitted', JSON.stringify(values, null, 2))
     if (values.Terms) {
       if (values.name && values.email && values.password) {
-        router.push('/home')
+        axios.post('http://192.168.44.8:3000/users', {values}) 
       } else {
         Alert.alert("Please fill all fields.")
       }
