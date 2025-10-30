@@ -27,7 +27,6 @@ export default function SignupScreen() {
   ];
 
   const handleSubmit = (values: { [key: string]: string | boolean }) => {
-    //Alert.alert('Form submitted', JSON.stringify(values, null, 2))
     if (values.Terms) {
       if (values.name && values.email && values.password) {
         axios.post('http://192.168.44.8:3000/users', {values}) 
