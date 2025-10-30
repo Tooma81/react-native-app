@@ -26,10 +26,16 @@ export default function SignupScreen() {
     },
   ];
 
-  const handleSubmit = (values: { [key: string]: string | boolean }) => {
+  const handleSubmit = async (values: { [key: string]: string | boolean }) => {
     if (values.Terms) {
       if (values.name && values.email && values.password) {
-        axios.post('http://192.168.44.8:3000/users', {values}) 
+        const response = await axios.post('http://192.168.44.8:3000/users', {values})
+        console.log(response.status)
+        if (response.status == 201) {
+          router.push('/home')
+        } else {
+          Alert.alert("Something went wrong")
+        }
       } else {
         Alert.alert("Please fill all fields.")
       }
