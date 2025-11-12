@@ -3,6 +3,7 @@ import Form, { Field } from '@/components/forms/form';
 import { ThemedButton } from '@/components/themed-button';
 import { ThemedText } from '@/components/themed-text';
 import Fontisto from '@expo/vector-icons/Fontisto';
+import axios from "axios";
 import { Stack, useRouter } from 'expo-router';
 import React from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
@@ -16,12 +17,20 @@ export default function LoginScreen() {
     { type: 'text', name: 'password', label: 'Password', placeholder: 'Enter password', secureTextEntry: true },
   ];
 
-  const handleSubmit = (values: { [key: string]: string | boolean }) => {
+  const handleSubmit = async (values: { [key: string]: string | boolean }) => {
+
     if (values.name && values.email && values.password) {
-      router.push('/home')
+      const response = await axios.get('http://localhost:3000/users')
+      console.log(response.status)
+      if (response.status == 201) {
+        router.push('/home')
+      } else {
+        Alert.alert("Something went wrong")
+      }
     } else {
       Alert.alert("Please fill all fields.")
     }
+    
   };
 
   return (
