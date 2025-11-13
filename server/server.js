@@ -24,23 +24,39 @@ db.connect((err) => {
   console.log('Connected to MySQL database.');
 });
 
-// Test route
-app.get('/users', (req, res) => {
-  db.query('SELECT * FROM users', (err, results) => {
-    if (err) return res.status(500).send(err);
-    res.json(results);
-  });
+// Log in
+app.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const [[userData]] = await db.query('SELECT * FROM user WHERE email = ?', [email]);
+
+    // Check if user exists
+    if (!userData) {
+      return res.status(401).json({ error: 'User not found.' });
+    }
+
+    // check if entered password matches hash and log in
+    if (!(await bcrypt.compare(password, userData.password))){
+      return res.status(401).json({ error: 'Wrong Password' });
+    }
+    
+    res.status(201).json({ message: 'Successfully logged in', userId: userData.id });
+  } catch (err) {
+    console.error('Caught error:', err);
+    res.status(500).send('Error logging in');
+  }
 });
 
-
-app.post('/users', async (req, res) => {
+// Sign up
+app.post('/signup', async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    //Duplicate email check
+    // Duplicate email check
     const [existingUser] = await db.query('SELECT id FROM user WHERE email = ?', [email]);
     if (existingUser.length > 0) {
-      return res.status(409).json({ error: 'Email already registered' });
+      return res.status(409).json({ error: 'Email already registered.' });
     }
 
     const cryptPassword = await bcrypt.hash(password, 10);

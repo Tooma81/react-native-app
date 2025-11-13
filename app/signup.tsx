@@ -31,7 +31,7 @@ export default function SignupScreen() {
       if (values.name && values.email && values.password) {
         try {
           const { name, email, password } = values;
-          await axios.post('http://localhost:3000/users', { name, email, password });
+          await axios.post('http://localhost:3000/signup', { name, email, password });
           router.push('/home');      
         } catch (err) {
           console.error(err);

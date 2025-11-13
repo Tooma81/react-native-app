@@ -13,24 +13,23 @@ export default function LoginScreen() {
   const router = useRouter();
 
   const fields: Field[] = [
-    { type: 'text' ,name: 'email', label: 'Email', placeholder: 'Enter your email' },
+    { type: 'text', name: 'email', label: 'Email', placeholder: 'Enter your email' },
     { type: 'text', name: 'password', label: 'Password', placeholder: 'Enter password', secureTextEntry: true },
   ];
 
   const handleSubmit = async (values: { [key: string]: string | boolean }) => {
-
-    if (values.name && values.email && values.password) {
-      const response = await axios.get('http://localhost:3000/users')
-      console.log(response.status)
-      if (response.status == 201) {
-        router.push('/home')
-      } else {
-        Alert.alert("Something went wrong")
+    if (values.email && values.password) {
+      try {
+        const { email, password } = values;
+        await axios.post('http://localhost:3000/login', { email, password });
+        router.push('/home');     
+      } catch (err) {
+        console.error(err);
+        Alert.alert("Something went wrong");
       }
     } else {
       Alert.alert("Please fill all fields.")
     }
-    
   };
 
   return (
