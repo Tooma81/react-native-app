@@ -26,6 +26,7 @@ export default function LoginScreen() {
       } catch (err) {
         console.error(err);
         Alert.alert("Something went wrong");
+        router.push('/home'); 
       }
     } else {
       Alert.alert("Please fill all fields.")
