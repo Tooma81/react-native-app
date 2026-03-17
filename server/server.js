@@ -2,6 +2,8 @@ import bcrypt from 'bcrypt';
 import cors from 'cors';
 import express from 'express';
 import mysql from 'mysql2/promise';
+// Furniture data
+import { getAllFurniture } from './data/furniture.js';
 
 const app = express();
 app.use(cors());
@@ -69,6 +71,18 @@ app.post('/signup', async (req, res) => {
   } catch (err) {
     console.error('Caught error:', err);
     res.status(500).send('Error creating user');
+  }
+});
+
+// Get furniture data from data/furniture.js
+
+// Get all furniture
+app.get('/api/furniture', (req, res) => {
+  try {
+    const furniture = getAllFurniture();
+    res.json(furniture);
+  } catch (error) {
+    res.status(500).json({ error: 'Serveri viga: ' + error.message });
   }
 });
 
