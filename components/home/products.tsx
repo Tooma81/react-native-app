@@ -1,16 +1,27 @@
+import { furnitureList } from '@/server/data/furniture';
 import { getAllFurniture } from '@/services/api';
 import React, { useEffect, useState } from 'react';
 import { FlatList, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { IMAGES } from './ImageRegistry';
 
 export default function HomeProducts() {
-    const [furniture, setFurniture] = useState([]);
+    interface Furniture {
+        id: number;
+        name: string;
+        price: number;
+        description: string;
+        imageKey: string;
+    }
+
+    const [furniture, setFurniture] = useState<Furniture[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null)
+
+    console.log(furnitureList)
     
 
     useEffect(() => {
-        loadData();
+        setFurniture(furnitureList)
     }, []);
 
     const loadData = async () => {
@@ -42,8 +53,8 @@ export default function HomeProducts() {
                         style={styles.productImage}
                         resizeMode="cover"
                     />
-                    <Text>{item.name}</Text>
-                    <Text>{item.price}</Text>
+                    <Text style={styles.productName}>{item.name}</Text>
+                    <Text style={styles.productPrice}>{item.price}</Text>
                 </View>
             </View>
         )
@@ -94,4 +105,12 @@ const styles = StyleSheet.create({
         height: '80%', 
         borderRadius: 12,
     },
+    productName: {
+        fontFamily: 'NunitoSans-Regular',
+        fontSize: 14,
+    },
+    productPrice: {
+        fontFamily: 'NunitoSans-Regular',
+        fontSize: 14,
+    }
 });

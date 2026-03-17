@@ -5,6 +5,7 @@ import 'react-native-reanimated';
 export default function RootLayout() {
   const fonts = useFonts({
     'Montserrat-Regular': require('@/assets/fonts/Montserrat-Regular.ttf'),
+    'NunitoSans-Regular': require('@/assets/fonts/NunitoSans-Regular.ttf')
   });
   return <Stack screenOptions={{
     headerStyle: {

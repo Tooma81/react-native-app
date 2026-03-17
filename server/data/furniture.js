@@ -1,4 +1,4 @@
-const furniture = [
+export const furnitureList = [
   {
     id: 1,
     name: "Black Simple Lamp",
