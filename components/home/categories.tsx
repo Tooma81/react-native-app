@@ -18,7 +18,7 @@ export default function HomeCategories() {
                         <View style={[styles.category, { backgroundColor: '#000' }] }>
                             <FontAwesome name="star" size={30} color="white" />
                         </View>
-                        <Text style={{ color: '#000', fontSize: 16 }}>Popular</Text>
+                        <Text style={{ color: '#000', fontSize: 16, overflow: 'visible' }}>Popular</Text>
                     </View>
                     <View style={styles.categoryContainer}>
                         <View style={styles.category}>
@@ -58,7 +58,7 @@ export default function HomeCategories() {
 
 const styles = StyleSheet.create({
   categoriesContainer: {
-    height: '10%',
+    height: '15%',
   },
   categories: {
     flex: 1,
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   categoryContainer: {
     flex: 1,
     alignItems: 'center',
-    maxWidth: 60,
+    maxWidth: 45,
     margin: '12%',
   },
   scrollContent: {

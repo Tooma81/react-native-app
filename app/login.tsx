@@ -18,7 +18,12 @@ export default function LoginScreen() {
   ];
 
   const handleSubmit = async (values: { [key: string]: string | boolean }) => {
-    if (values.email && values.password) {
+    // Logib sisse test kasutajaga
+    if (values.email === 'user@example.com' && values.password === 'qwerty') {
+      router.push('/home');
+      console.log("Sisse logitud test kasutajaga")
+    // Tavaline sisselogimise loogika
+    } else if(values.email && values.password) {
       try {
         const { email, password } = values;
         await axios.post('http://localhost:3000/login', { email, password });
@@ -26,11 +31,10 @@ export default function LoginScreen() {
       } catch (err) {
         console.error(err);
         Alert.alert("Something went wrong");
-        router.push('/home'); 
       }
     } else {
       Alert.alert("Please fill all fields.")
-    }
+    };
   };
 
   return (
