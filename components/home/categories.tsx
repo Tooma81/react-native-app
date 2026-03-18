@@ -3,7 +3,8 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function HomeCategories() {
     return (
@@ -11,6 +12,7 @@ export default function HomeCategories() {
             <ScrollView 
                 horizontal 
                 showsHorizontalScrollIndicator={false}
+                nestedScrollEnabled={true}
                 contentContainerStyle={styles.scrollContent}
             >
                 <View style={styles.categories}>
@@ -18,37 +20,37 @@ export default function HomeCategories() {
                         <View style={[styles.category, { backgroundColor: '#000' }] }>
                             <FontAwesome name="star" size={30} color="white" />
                         </View>
-                        <Text style={{ color: '#000', fontSize: 16, overflow: 'visible' }}>Popular</Text>
+                        <Text style={[styles.categoryLabel, {color: '#000'}]}>Popular</Text>
                     </View>
                     <View style={styles.categoryContainer}>
                         <View style={styles.category}>
                             <FontAwesome5 name="chair" size={30} color="#999" />
                         </View>
-                        <Text style={{ color: '#999', fontSize: 16 }}>Chair</Text>
+                        <Text style={styles.categoryLabel}>Chair</Text>
                     </View>
                     <View style={styles.categoryContainer}>
                         <View style={styles.category}>
                             <MaterialIcons name="table-restaurant" size={30} color="#999" />
                         </View>
-                        <Text style={{ color: '#999', fontSize: 16 }}>Table</Text>
+                        <Text style={styles.categoryLabel}>Table</Text>
                     </View>
                     <View style={styles.categoryContainer}>
                         <View style={styles.category}>
                             <MaterialCommunityIcons name="sofa-outline" size={30} color="#999" />
                         </View>
-                        <Text style={{ color: '#999', fontSize: 16 }}>Armchair</Text>
+                        <Text style={styles.categoryLabel}>Armchair</Text>
                     </View>
                     <View style={styles.categoryContainer}>
                         <View style={styles.category}>
                             <Ionicons name="bed-outline" size={30} color="#999" />
                         </View>
-                        <Text style={{ color: '#999', fontSize: 16 }}>Bed</Text>
+                        <Text style={styles.categoryLabel}>Bed</Text>
                     </View>
                     <View style={styles.categoryContainer}>
                         <View style={styles.category}>
                             <MaterialCommunityIcons name="lamp-outline" size={30} color="#999" />
                         </View>
-                        <Text style={{ color: '#999', fontSize: 16 }}>Lamp</Text>
+                        <Text style={styles.categoryLabel}>Lamp</Text>
                     </View>
                 </View>
             </ScrollView>
@@ -58,32 +60,36 @@ export default function HomeCategories() {
 
 const styles = StyleSheet.create({
   categoriesContainer: {
-    height: '15%',
+    height: '15%'
   },
   categories: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    width: '80%',
     flexDirection: 'row',
+    
   },
   categoryContainer: {
     flex: 1,
     alignItems: 'center',
-    maxWidth: 45,
-    margin: '12%',
+    width: '25%',
+    height: '100%',
+    margin: 12,
+    
   },
   scrollContent: {
     paddingHorizontal: 15, 
     flexDirection: 'row',
-    
   },
   category: {
-    height: 50,
-    width: 50,
+    height: '50%',
+    aspectRatio: 1 / 1,
     backgroundColor: '#f5f5f5',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 12,
   },
+  categoryLabel: {
+    color: '#999', 
+    fontSize: 16,
+  }
 });

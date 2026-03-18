@@ -1,7 +1,7 @@
 import { furnitureList } from '@/server/data/furniture';
 import { getAllFurniture } from '@/services/api';
 import React, { useEffect, useState } from 'react';
-import { FlatList, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import { IMAGES } from './ImageRegistry';
 
 export default function HomeProducts() {
@@ -63,17 +63,13 @@ export default function HomeProducts() {
     console.log(furniture)
     return (
         <View style={styles.productListContainer}>
-            <ScrollView 
-                showsHorizontalScrollIndicator={false}
-            >
-                <FlatList
-                    data={furniture}
-                    renderItem={renderProduct}
-                    keyExtractor={(item, index) => index.toString()}
-                    numColumns={2} 
-                    columnWrapperStyle={styles.productRow} 
-                />
-            </ScrollView>
+            <FlatList
+                data={furniture}
+                renderItem={renderProduct}
+                keyExtractor={(item, index) => index.toString()}
+                numColumns={2} 
+                columnWrapperStyle={styles.productRow} 
+            />
         </View>
     )
 }
