@@ -54,9 +54,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   titleBase: {
-    fontFamily: 'Montserrat-Regular',
+    fontFamily: 'Montserrat-Bold',
     fontSize: 16,
-    fontWeight: 700,
     alignItems: 'center',
     justifyContent: 'center',
   },

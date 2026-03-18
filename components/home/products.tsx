@@ -8,7 +8,7 @@ export default function HomeProducts() {
     interface Furniture {
         id: number;
         name: string;
-        price: number;
+        price: string;
         description: string;
         imageKey: string;
     }
@@ -54,7 +54,7 @@ export default function HomeProducts() {
                         resizeMode="cover"
                     />
                     <Text style={styles.productName}>{item.name}</Text>
-                    <Text style={styles.productPrice}>{item.price}</Text>
+                    <Text style={styles.productPrice}>$ {item.price.slice(0, 2)}.{item.price.slice(2, 4)}</Text>
                 </View>
             </View>
         )
@@ -87,26 +87,29 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         maxWidth: '50%',
         height: 300, 
-        margin: 10,  
+        marginVertical: 10,  
     },
     product: {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'space-between',
-        width: '90%',
+        width: '85%',
         height: '100%', 
     },
     productImage: {
         width: '100%',
-        height: '80%', 
+        height: '75%', 
         borderRadius: 12,
     },
     productName: {
+        color: '#606060',
         fontFamily: 'NunitoSans-Regular',
-        fontSize: 14,
+        fontSize: 16,
+        fontWeight: 400,
     },
     productPrice: {
-        fontFamily: 'NunitoSans-Regular',
-        fontSize: 14,
+        color: '#000',
+        fontFamily: 'NunitoSans-Bold',
+        fontSize: 16,
     }
 });
