@@ -1,16 +1,24 @@
 import HomeCategories from '@/components/home/categories';
-import HomeProducts from '@/components/home/products';
+import HomeProductList from '@/components/home/product-list';
 import HomeSearch from '@/components/home/search';
+import { useRouter } from 'expo-router';
 import { View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function HomeScreen() {
+    const router = useRouter();
+
+    const handleOpenProduct = () => {
+        router.push('./product')
+    };
+
+
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
             <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
                 <HomeSearch />
                 <HomeCategories />
-                <HomeProducts />
+                <HomeProductList />
             </View>
         </GestureHandlerRootView>
     )

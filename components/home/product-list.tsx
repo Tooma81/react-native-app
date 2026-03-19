@@ -1,10 +1,10 @@
+import { Product } from '@/components/product';
 import { furnitureList } from '@/server/data/furniture';
 import { getAllFurniture } from '@/services/api';
 import React, { useEffect, useState } from 'react';
-import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
-import { IMAGES } from './ImageRegistry';
+import { FlatList, StyleSheet, View } from 'react-native';
 
-export default function HomeProducts() {
+export default function HomeProductList() {
     interface Furniture {
         id: number;
         name: string;
@@ -43,24 +43,17 @@ export default function HomeProducts() {
     console.log(furniture)
 
     const renderProduct = ({ item }: { item: any }) => {
-        const imageSource = IMAGES[item.imageKey] || IMAGES["productPlaceholder"];
-
-        return (
-            <View style={styles.productContainer}>
-                <View style={styles.product}>
-                    <Image
-                        source={imageSource}
-                        style={styles.productImage}
-                        resizeMode="cover"
-                    />
-                    <Text style={styles.productName}>{item.name}</Text>
-                    <Text style={styles.productPrice}>$ {item.price.slice(0, 2)}.{item.price.slice(2, 4)}</Text>
-                </View>
-            </View>
+        
+        
+        return(
+            <Product 
+                name={item.name}
+                price={item.price}
+                imageKey={item.imageKey}
+            />
         )
     };
     
-    console.log(furniture)
     return (
         <View style={styles.productListContainer}>
             <FlatList
@@ -82,34 +75,4 @@ const styles = StyleSheet.create({
     productRow: {
         justifyContent: 'space-between',
     },
-    productContainer: {
-        flex: 1, 
-        alignItems: 'center',
-        maxWidth: '50%',
-        height: 300, 
-        marginVertical: 10,  
-    },
-    product: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        width: '85%',
-        height: '100%', 
-    },
-    productImage: {
-        width: '100%',
-        height: '75%', 
-        borderRadius: 12,
-    },
-    productName: {
-        color: '#606060',
-        fontFamily: 'NunitoSans-Regular',
-        fontSize: 16,
-        fontWeight: 400,
-    },
-    productPrice: {
-        color: '#000',
-        fontFamily: 'NunitoSans-Bold',
-        fontSize: 16,
-    }
 });
