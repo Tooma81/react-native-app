@@ -1,7 +1,7 @@
 import { ThemedText } from '@/components/themed-text';
 import { View } from 'react-native';
 
-export default function FavoritesScreen() {
+export default function ProductPage() {
     return (
         <View>
             <ThemedText>Product Page</ThemedText>

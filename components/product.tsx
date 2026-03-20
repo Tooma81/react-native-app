@@ -6,18 +6,21 @@ export type ProductProps = {
     price: string;
     description?: string;
     imageKey: string;
+    onPress?: () => void;
 }
 
 export function Product({
     name,
     price,
     description,
-    imageKey
+    imageKey,
+    onPress
 }: ProductProps) {
     const imageSource = IMAGES[imageKey] || IMAGES["productPlaceholder"];
 
     return (
         <Pressable 
+            onPress={onPress}
             style={styles.productContainer}
         >
             <View style={styles.product}>

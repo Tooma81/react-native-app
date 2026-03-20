@@ -1,10 +1,12 @@
 import { Product } from '@/components/product';
 import { furnitureList } from '@/server/data/furniture';
-import { getAllFurniture } from '@/services/api';
+import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 
 export default function HomeProductList() {
+    const router = useRouter();
+
     interface Furniture {
         id: number;
         name: string;
@@ -16,14 +18,13 @@ export default function HomeProductList() {
     const [furniture, setFurniture] = useState<Furniture[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null)
-
-    console.log(furnitureList)
     
 
     useEffect(() => {
         setFurniture(furnitureList)
     }, []);
 
+    /* 
     const loadData = async () => {
         try {
             setLoading(true);
@@ -39,17 +40,19 @@ export default function HomeProductList() {
             setLoading(false);
         }
     };
+    */
 
-    console.log(furniture)
+    const handleOpenProduct = ({id}: {id: any}) => {
+        console.log(`Product clicked id:${id}`)
+    };
 
     const renderProduct = ({ item }: { item: any }) => {
-        
-        
         return(
             <Product 
                 name={item.name}
                 price={item.price}
                 imageKey={item.imageKey}
+                onPress={() => handleOpenProduct({ id: item.id })}
             />
         )
     };
