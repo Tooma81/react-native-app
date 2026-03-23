@@ -49,12 +49,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => <IconSymbol size={24} name={focused ? "person.fill" : "person"} color={color} />,
         }}
       />
-      <Tabs.Screen
-        name="product-page"
-        options={{
-          href: null,
-        }}
-      />
     </Tabs>
   );
 }

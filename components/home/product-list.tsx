@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 
 export default function HomeProductList() {
+
     const router = useRouter();
 
     interface Furniture {
@@ -15,9 +16,9 @@ export default function HomeProductList() {
         imageKey: string;
     }
 
-    const [furniture, setFurniture] = useState<Furniture[]>([]);
+    const [furniture, setFurniture] = useState<Furniture[]>([]); //Toote nimekiri
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null)
+    const [error, setError] = useState<string | null>(null); 
     
 
     useEffect(() => {
@@ -43,7 +44,7 @@ export default function HomeProductList() {
     */
 
     const handleOpenProduct = ({id}: {id: any}) => {
-        console.log(`Product clicked id:${id}`)
+        router.push('./product-page');
     };
 
     const renderProduct = ({ item }: { item: any }) => {
