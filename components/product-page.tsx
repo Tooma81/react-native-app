@@ -1,9 +1,9 @@
 import { IMAGES } from '@/components/ImageRegistry';
 import { furnitureList } from '@/server/data/furniture';
 import Entypo from '@expo/vector-icons/Entypo';
+import React from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { ThemedText } from './themed-text';
-import React from 'react';
 
 type ProductPageProps = {
     productId: number;
@@ -55,10 +55,12 @@ const styles = StyleSheet.create({
         width: 40,
         backgroundColor: '#fff',
         top: 50,
-        left: 30,
+        left: '10%',
         alignItems: 'center',
         justifyContent: 'center',
         zIndex: 999,
+        borderRadius: 8,
+        elevation: 10, // Android shadow
     },
     productContainer: {
         flex: 1,
