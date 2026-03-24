@@ -8,6 +8,7 @@ export default function RootLayout() {
     'Montserrat-Bold': require('@/assets/fonts/Montserrat-Bold.ttf'),
     'NunitoSans-Regular': require('@/assets/fonts/NunitoSans-Regular.ttf'),
     'NunitoSans-Bold': require('@/assets/fonts/NunitoSans-Bold.ttf'),
+    'Gelasio-Regular': require('@/assets/fonts/Gelasio-Regular.ttf'),
   });
   return <Stack screenOptions={{
     headerStyle: {

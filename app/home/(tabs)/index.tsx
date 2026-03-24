@@ -10,7 +10,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 export default function HomeScreen() {
     const router = useRouter();
 
-    const[activeProductId, setActiveProductId] = useState(0); //Toote ID
+    const[activeProductId, setActiveProductId] = useState(1); //Toote ID
 
     // Ava toote leht
     const handleOpenProduct = (productId: number) => {
