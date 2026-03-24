@@ -3,6 +3,7 @@ import { furnitureList } from '@/server/data/furniture';
 import Entypo from '@expo/vector-icons/Entypo';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { ThemedText } from './themed-text';
+import React from 'react';
 
 type ProductPageProps = {
     productId: number;
@@ -15,9 +16,6 @@ export default function ProductPage({
 }: ProductPageProps) {
     const productData = furnitureList.find((item) => item.id === productId);
 
-    console.log(productData)
-
-    
     return (
         <View style={{flex: 1}}>
             <Pressable

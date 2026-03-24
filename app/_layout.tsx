@@ -1,15 +1,9 @@
-import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
+import React from 'react';
 import 'react-native-reanimated';
 
 export default function RootLayout() {
-  const fonts = useFonts({
-    'Montserrat-Regular': require('@/assets/fonts/Montserrat-Regular.ttf'),
-    'Montserrat-Bold': require('@/assets/fonts/Montserrat-Bold.ttf'),
-    'NunitoSans-Regular': require('@/assets/fonts/NunitoSans-Regular.ttf'),
-    'NunitoSans-Bold': require('@/assets/fonts/NunitoSans-Bold.ttf'),
-    'Gelasio-Regular': require('@/assets/fonts/Gelasio-Regular.ttf'),
-  });
+  
   return <Stack screenOptions={{
     headerStyle: {
       backgroundColor: '#fff',

@@ -1,11 +1,37 @@
 import { ThemedButton } from '@/components/themed-button';
 import { ThemedText } from '@/components/themed-text';
+import { useFonts } from 'expo-font';
 import { Image } from 'expo-image';
 import { Stack, useRouter } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
+import React from 'react';
+import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function StartScreen() {
   const router = useRouter();
+
+  const [loaded, error] = useFonts({
+    'Montserrat-Regular': require('@/assets/fonts/Montserrat-Regular.ttf'),
+    'Montserrat-Bold': require('@/assets/fonts/Montserrat-Bold.ttf'),
+    'NunitoSans-Regular': require('@/assets/fonts/NunitoSans-Regular.ttf'),
+    'NunitoSans-Bold': require('@/assets/fonts/NunitoSans-Bold.ttf'),
+    'Gelasio-Regular': require('@/assets/fonts/Gelasio-Regular.ttf'),
+  });
+
+  // Hide the splash screen once fonts are loaded or an error occurs
+  useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, error]);
+
+  // Prevent rendering the UI until fonts are ready
+  if (!loaded && !error) {
+    return null;
+  }
 
   return (
     <>
