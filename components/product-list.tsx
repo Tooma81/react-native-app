@@ -4,8 +4,13 @@ import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 
-export default function HomeProductList() {
+export type ProductListProps = {
+    onProductPress?: (productId: number) => void;
+}
 
+export default function ProductList({
+    onProductPress
+}: ProductListProps) {
     const router = useRouter();
 
     interface Furniture {
@@ -43,17 +48,13 @@ export default function HomeProductList() {
     };
     */
 
-    const handleOpenProduct = ({id}: {id: any}) => {
-        router.push('./product-page');
-    };
-
     const renderProduct = ({ item }: { item: any }) => {
         return(
             <Product 
                 name={item.name}
                 price={item.price}
                 imageKey={item.imageKey}
-                onPress={() => handleOpenProduct({ id: item.id })}
+                onPress={() => onProductPress?.(item.id)}
             />
         )
     };

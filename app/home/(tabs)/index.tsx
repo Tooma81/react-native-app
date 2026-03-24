@@ -1,31 +1,42 @@
 import HomeCategories from '@/components/home/categories';
-import HomeProductList from '@/components/home/product-list';
 import HomeSearch from '@/components/home/search';
+import ProductList from '@/components/product-list';
 import ProductPage from '@/components/product-page';
 import { useRouter } from 'expo-router';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function HomeScreen() {
     const router = useRouter();
 
-    const[activeProductId, setActiveProductId] = useState(0); 
+    const[activeProductId, setActiveProductId] = useState(0); //Toote ID
 
-    const handleOpenProduct = () => {
-        router.push('./product')
+    // Ava toote leht
+    const handleOpenProduct = (productId: number) => {
+        setActiveProductId(productId)
     };
 
+    // Mine tagasi toote nimekirja
+    const handleReturn = () => {
+        setActiveProductId(0)
+    };
 
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
             {activeProductId ?
-                <ProductPage />
-            :
+                <ProductPage 
+                    productId={activeProductId}
+                    onReturn={handleReturn}
+                />
+            :   
+                // Kui toote ID on 0, naita nimekirja 
                 <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
                     <HomeSearch />
                     <HomeCategories />
-                    <HomeProductList />
+                    <ProductList 
+                        onProductPress={handleOpenProduct}
+                    />
                 </View>
             }   
         </GestureHandlerRootView>
