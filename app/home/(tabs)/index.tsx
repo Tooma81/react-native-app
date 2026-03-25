@@ -2,6 +2,7 @@ import HomeCategories from '@/components/home/categories';
 import HomeSearch from '@/components/home/search';
 import ProductList from '@/components/product-list';
 import ProductPage from '@/components/product-page';
+import { TabBarStyle } from '@/constants/tab-bar-style';
 import { Tabs, useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { View } from 'react-native';
@@ -38,6 +39,12 @@ export default function HomeScreen() {
                 </>
             :   
                 // Kui toote ID on 0, naita nimekirja 
+                <>
+                <Tabs.Screen options={{
+                    tabBarStyle: TabBarStyle
+                }}/>    
+
+                
                 <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
                     <HomeSearch />
                     <HomeCategories />
@@ -45,6 +52,7 @@ export default function HomeScreen() {
                         onProductPress={handleOpenProduct}
                     />
                 </View>
+                </>
             }   
         </GestureHandlerRootView>
     )
