@@ -16,6 +16,13 @@ export default function TabLayout() {
         headerShown: false,
         tabBarButton: HapticTab,
         tabBarStyle: TabBarStyle, // Apply base Tabbar style
+        animation: 'shift', 
+        transitionSpec: {
+          animation: 'timing',
+          config: {
+            duration: 250,
+        },
+    },
       }}>
       <Tabs.Screen
         name="index"
