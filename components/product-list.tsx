@@ -1,14 +1,17 @@
-import { Product } from '@/components/product';
+import { ProductListItemGrid } from '@/components/product-list-item-grid';
 import { furnitureList } from '@/server/data/furniture';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
+import { ProductListItem } from './product-list-item';
 
 export type ProductListProps = {
+    type?: 'grid' | 'list';
     onProductPress?: (productId: number) => void;
 }
 
 export default function ProductList({
+    type = 'grid',
     onProductPress
 }: ProductListProps) {
     const router = useRouter();
@@ -49,13 +52,25 @@ export default function ProductList({
     */
 
     const renderProduct = ({ item }: { item: any }) => {
+        
         return(
-            <Product 
-                name={item.name}
-                price={item.price}
-                imageKey={item.imageKey}
-                onPress={() => onProductPress?.(item.id)}
-            />
+            <>
+            {type === 'grid' ?
+                <ProductListItemGrid
+                    name={item.name}
+                    price={item.price}
+                    imageKey={item.imageKey}
+                    onPress={() => onProductPress?.(item.id)}
+                />
+            :
+                <ProductListItem
+                    name={item.name}
+                    price={item.price}
+                    imageKey={item.imageKey}
+                    onPress={() => onProductPress?.(item.id)}
+                />
+            }   
+            </>
         )
     };
     
@@ -65,8 +80,7 @@ export default function ProductList({
                 data={furniture}
                 renderItem={renderProduct}
                 keyExtractor={(item, index) => index.toString()}
-                numColumns={2} 
-                columnWrapperStyle={styles.productRow} 
+                numColumns={type === 'list' ? 1 : 2} 
             />
         </View>
     )

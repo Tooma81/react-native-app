@@ -1,7 +1,8 @@
 import { IMAGES } from '@/components/ImageRegistry';
+import React from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
-export type ProductProps = {
+export type ProductListItemProps = {
     name: string;
     price: string;
     description?: string;
@@ -9,13 +10,13 @@ export type ProductProps = {
     onPress?: () => void;
 }
 
-export function Product({
+export function ProductListItem({
     name,
     price,
     description,
     imageKey,
     onPress
-}: ProductProps) {
+}: ProductListItemProps) {
     const imageSource = IMAGES[imageKey] || IMAGES["productPlaceholder"];
 
     return (
