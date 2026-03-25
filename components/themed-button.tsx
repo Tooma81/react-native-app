@@ -2,7 +2,7 @@ import React from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
 type ThemedButtonProps = {
-  type?: 'default' | 'dark' | 'transparent';
+  type?: 'default' | 'dark' | 'transparent' | 'inverted';
   title: string | React.ReactNode;
   onPress: () => void;
   style?: object;
@@ -20,13 +20,15 @@ export function ThemedButton({
   const backgroundColors = {
     default: '#4f63ac',
     dark: '#3f4a59',
-    transparent: 'transparent'
+    transparent: 'transparent',
+    inverted: '#f0f0f0',
   };
 
   const titleColors = {
     default: '#fff',
     dark: '#fff',
-    transparent: '#4f63ac'
+    transparent: '#4f63ac',
+    inverted: '#4f63ac',
   };
 
   return (

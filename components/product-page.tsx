@@ -1,8 +1,10 @@
 import { IMAGES } from '@/components/ImageRegistry';
 import { furnitureList } from '@/server/data/furniture';
 import Entypo from '@expo/vector-icons/Entypo';
-import React from 'react';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import React, { useState } from 'react';
+import { Alert, Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { ThemedButton } from './themed-button';
 import { ThemedText } from './themed-text';
 
 type ProductPageProps = {
@@ -15,6 +17,8 @@ export default function ProductPage({
     onReturn,
 }: ProductPageProps) {
     const productData = furnitureList.find((item) => item.id === productId);
+
+    const [wishlisted, setWishlisted] = useState(false); //Wishlist status (UI only)
 
     return (
         <View style={{flex: 1}}>
@@ -36,6 +40,24 @@ export default function ProductPage({
                         <Text style={styles.name}>{productData.name}</Text>
                         <Text style={styles.price}>${productData.price.slice(0, 2)}</Text>
                         <Text style={styles.description}>{productData.description}</Text>
+                    </View>
+                    <View style={styles.productControls}>
+                        <ThemedButton 
+                            type={'inverted'}
+                            title={
+                                <FontAwesome 
+                                    name={wishlisted ? 'bookmark' : 'bookmark-o'}
+                                    size={24}
+                                />
+                            }
+                            onPress={() => setWishlisted(!wishlisted)}
+                            style={styles.wishListButton}
+                        />
+                        <ThemedButton
+                            title={'Contact Seller'}
+                            onPress={() => Alert.alert('Seller contacted')}
+                            style={{flex: 1, elevation: 15}}
+                        />
                     </View>
                 </View>
             </View>
@@ -97,4 +119,15 @@ const styles = StyleSheet.create({
         fontWeight: 300,
         color: '#606060'
     },
+    productControls: {
+        flexDirection: 'row',
+        height: '20%',
+        alignItems: 'center',
+    },
+    wishListButton: {
+        flex: 1, 
+        minWidth: 60,
+        maxWidth: 60,
+        marginRight: '5%',
+    }
 })
