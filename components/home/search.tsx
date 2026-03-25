@@ -1,4 +1,5 @@
 import Feather from '@expo/vector-icons/Feather';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function HomeCategories() {
@@ -16,8 +17,7 @@ export default function HomeCategories() {
 
 const styles = StyleSheet.create({
     headerText: {
-        fontFamily: 'Montserrat-Regular',
-        fontWeight: 700,
+        fontFamily: 'Montserrat-Bold',
         fontSize: 16,
     },
     searchContainer: {
@@ -25,11 +25,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        height: '15%',
+        height: '10%',
     },
     searchIcon: {
         position: 'absolute',
-        top: '5%',
+        top: '3%',
         left: '5%',
     }
 });
