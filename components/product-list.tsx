@@ -1,28 +1,29 @@
 import { ProductListItemGrid } from '@/components/product-list-item-grid';
-import { furnitureList } from '@/server/data/furniture';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { ProductListItem } from './product-list-item';
 
+interface Furniture {
+    id: number;
+    name: string;
+    price: string;
+    description: string;
+    imageKey: string;
+}
+
 export type ProductListProps = {
+    furnitureData: Furniture[];
     type?: 'grid' | 'list';
     onProductPress?: (productId: number) => void;
 }
 
 export default function ProductList({
+    furnitureData,
     type = 'grid',
     onProductPress
 }: ProductListProps) {
     const router = useRouter();
-
-    interface Furniture {
-        id: number;
-        name: string;
-        price: string;
-        description: string;
-        imageKey: string;
-    }
 
     const [furniture, setFurniture] = useState<Furniture[]>([]); //Toote nimekiri
     const [loading, setLoading] = useState(true);
@@ -30,8 +31,8 @@ export default function ProductList({
     
 
     useEffect(() => {
-        setFurniture(furnitureList)
-    }, []);
+        setFurniture(furnitureData)
+    }, [furnitureData]);
 
     /* 
     const loadData = async () => {

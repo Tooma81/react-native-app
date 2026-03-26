@@ -1,4 +1,5 @@
 import ProductList from '@/components/product-list';
+import { furnitureList } from '@/server/data/furniture';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -8,7 +9,10 @@ export default function FavoritesScreen() {
             <View style={styles.headerContainer}>
                 <Text style={styles.headerText}>Find All You Need</Text>
             </View>
-            <ProductList type='list'/>
+            <ProductList 
+                type='list'
+                furnitureData={furnitureList}
+            />
         </View>
     )
 }

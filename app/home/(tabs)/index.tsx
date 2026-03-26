@@ -3,6 +3,7 @@ import HomeSearch from '@/components/home/search';
 import ProductList from '@/components/product-list';
 import ProductPage from '@/components/product-page';
 import { TabBarStyle } from '@/constants/tab-bar-style';
+import { furnitureList } from '@/server/data/furniture';
 import { Tabs, useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { View } from 'react-native';
@@ -50,6 +51,7 @@ export default function HomeScreen() {
                     <HomeCategories />
                     <ProductList 
                         onProductPress={handleOpenProduct}
+                        furnitureData={furnitureList}
                     />
                 </View>
                 </>
