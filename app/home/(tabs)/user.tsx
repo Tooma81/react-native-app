@@ -1,11 +1,38 @@
-import { ThemedText } from '@/components/themed-text';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { useRouter } from 'expo-router';
 import React from 'react';
-import { View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 export default function UserScreen() {
+    const router = useRouter();
+
     return (
-        <View>
-            <ThemedText>Profile</ThemedText>
+        <View style={{flex: 1, backgroundColor: '#fff'}}>
+            <Pressable style={styles.logOutIcon} onPress={() => router.push('/')}>
+                <Ionicons name="exit-outline" size={24} color="#4f63ac"/>
+            </Pressable>
+            <View style={styles.headerContainer}>
+                <Text style={styles.headerText}>Profile</Text>
+            </View>  
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    headerText: {
+        fontFamily: 'Montserrat-Bold',
+        fontSize: 16,
+    },
+    headerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '10%',
+    },
+    logOutIcon: {
+        position: 'absolute',
+        top: '3%',
+        right: '5%',
+    }
+})

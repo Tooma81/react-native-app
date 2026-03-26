@@ -1,5 +1,5 @@
 import { IMAGES } from '@/components/ImageRegistry';
-import AntDesign from '@expo/vector-icons/AntDesign';
+import Feather from '@expo/vector-icons/Feather';
 import React from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -9,6 +9,7 @@ export type ProductListItemProps = {
     description?: string;
     imageKey: string;
     onPress?: () => void;
+    deleteButtonStyle: 'default' | 'trash';
 }
 
 export function ProductListItem({
@@ -16,9 +17,22 @@ export function ProductListItem({
     price,
     description,
     imageKey,
-    onPress
+    onPress,
+    deleteButtonStyle
 }: ProductListItemProps) {
     const imageSource = IMAGES[imageKey] || IMAGES["productPlaceholder"];
+
+    // Delete button styles
+    const deleteButtons = {
+        default: 'x-circle',
+        trash: 'trash',
+    } as const
+
+    // Delete button colors
+    const deleteButtonColors = {
+        default: '#4F63AC',
+        trash: '#000',
+    }
 
     return (
         <Pressable 
@@ -26,7 +40,12 @@ export function ProductListItem({
             style={styles.productContainer}
         >
             <View style={styles.product}>
-                <AntDesign style={styles.deleteButton} name="close-circle" size={28} color="#4f63ac" />
+                <Feather 
+                    style={styles.deleteButton}
+                    name={deleteButtons[deleteButtonStyle]} 
+                    size={28} 
+                    color={deleteButtonColors[deleteButtonStyle]} 
+                />
                 <View style={styles.productImageContainer}>
                     <Image
                         source={imageSource}
@@ -86,12 +105,12 @@ const styles = StyleSheet.create({
     },
     productDetails: {
         flex: 1,
-        paddingLeft: '8%',
+        paddingLeft: '5%',
     },
     deleteButton: {
         position: 'absolute',
         zIndex: 999,
-        right: 5,
+        right: 0,
         top: 0,
     }
 })

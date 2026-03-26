@@ -16,12 +16,14 @@ export type ProductListProps = {
     furnitureData: Furniture[];
     type?: 'grid' | 'list';
     onProductPress?: (productId: number) => void;
+    deleteButtonStyle?: 'default' | 'trash';
 }
 
 export default function ProductList({
     furnitureData,
     type = 'grid',
-    onProductPress
+    onProductPress,
+    deleteButtonStyle = 'default',
 }: ProductListProps) {
     const router = useRouter();
 
@@ -69,6 +71,7 @@ export default function ProductList({
                     price={item.price}
                     imageKey={item.imageKey}
                     onPress={() => onProductPress?.(item.id)}
+                    deleteButtonStyle={deleteButtonStyle}
                 />
             }   
             </>
