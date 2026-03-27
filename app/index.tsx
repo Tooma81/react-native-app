@@ -4,8 +4,7 @@ import { useFonts } from 'expo-font';
 import { Image } from 'expo-image';
 import { Stack, useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 SplashScreen.preventAutoHideAsync();
