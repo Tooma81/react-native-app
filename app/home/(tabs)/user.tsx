@@ -1,55 +1,77 @@
+import ProductList from '@/components/product-list';
 import { ThemedButton } from '@/components/themed-button';
+import { furnitureList } from '@/server/data/furniture';
 import Fontisto from '@expo/vector-icons/Fontisto';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useRouter } from 'expo-router';
-import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 
 export default function UserScreen() {
+    const [listingsOpen, setListingsOpen] = useState(false);
+
     const router = useRouter();
 
     return (
         <View style={{flex: 1, backgroundColor: '#fff'}}>
-            <Pressable style={styles.logOutIcon} onPress={() => router.push('/')}>
-                <Ionicons name="exit-outline" size={24} color="#4f63ac"/>
-            </Pressable>
+            
+            {listingsOpen ?  
+                <Pressable style={{position: 'absolute', left: 12,}} onPress={() => setListingsOpen(false)}>
+                    <MaterialCommunityIcons name="arrow-left" size={24} color="#4f63ac" />
+                </Pressable>
+            :
+                <Pressable style={styles.logOutIcon} onPress={() => router.push('/')}>
+                    <Ionicons name="exit-outline" size={24} color="#4f63ac"/>
+                </Pressable>
+            }
             <View style={styles.headerContainer}>
-                <Text style={styles.headerText}>Profile</Text>
+                <Text style={styles.headerText}>{listingsOpen ? "My Listings" : "Profile"}</Text>
             </View> 
-            <View style={styles.userDetailsContainer}>
-                <Text style={{
-                    fontFamily: 'NunitoSans-Bold', 
-                    fontSize: 24
-                }}>
-                    Test User
-                </Text>
-                <Text style={{
-                    fontFamily: 'NunitoSans-Regular', 
-                    fontSize: 16,
-                    color: '#808080'
-                }}>
-                    user@example.com
-                </Text>
-            </View>
-            <View style={styles.bodyContainer}>
-                <View style={styles.menuContainer}>
-                    <View style={styles.menuItem}>
-                        <Fontisto style={styles.menuItemArrow} name="angle-right" size={20} color="#4F63AC" />
-                        <Text style={styles.menuItemTitle}>My Listings</Text>
-                        <Text style={styles.menuItemDesc}>Already have 3 listings</Text>
-                    </View>
-                    <View style={styles.menuItem}>
-                        <Fontisto style={styles.menuItemArrow} name="angle-right" size={20} color="#4F63AC" />
-                        <Text style={styles.menuItemTitle}>Settings</Text>
-                        <Text style={styles.menuItemDesc}>Account, FAQ, Contact</Text>
-                    </View>
-                </View>
-                <ThemedButton 
-                    title="Add a new listing"
-                    onPress={() => router.push('/new-listing')}
-                    style={styles.newListingButton}
+            {listingsOpen ? 
+                <ProductList 
+                    type="list"
+                    furnitureData={furnitureList}
+                    deleteButtonStyle="trash"
                 />
-            </View>
+            :
+                <>
+                <View style={styles.userDetailsContainer}>
+                    <Text style={{
+                        fontFamily: 'NunitoSans-Bold', 
+                        fontSize: 24
+                    }}>
+                        Test User
+                    </Text>
+                    <Text style={{
+                        fontFamily: 'NunitoSans-Regular', 
+                        fontSize: 16,
+                        color: '#808080'
+                    }}>
+                        user@example.com
+                    </Text>
+                </View>
+                <View style={styles.bodyContainer}>
+                    <View style={styles.menuContainer}>
+                        <Pressable style={styles.menuItem} onPress={() => setListingsOpen(true)}>
+                            <Fontisto style={styles.menuItemArrow} name="angle-right" size={20} color="#4F63AC" />
+                            <Text style={styles.menuItemTitle}>My Listings</Text>
+                            <Text style={styles.menuItemDesc}>Already have 3 listings</Text>
+                        </Pressable>
+                        <Pressable style={styles.menuItem} onPress={() => Alert.alert("Options Page")}>
+                            <Fontisto style={styles.menuItemArrow} name="angle-right" size={20} color="#4F63AC" />
+                            <Text style={styles.menuItemTitle}>Settings</Text>
+                            <Text style={styles.menuItemDesc}>Account, FAQ, Contact</Text>
+                        </Pressable>
+                    </View>
+                    <ThemedButton 
+                        title="Add a new listing"
+                        onPress={() => Alert.alert("New Listing Page")}
+                        style={styles.newListingButton}
+                    />
+                </View>
+                </>                
+            }
         </View>
     )
 }
