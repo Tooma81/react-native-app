@@ -10,6 +10,11 @@ import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 
 export default function UserScreen() {
     const [listingsOpen, setListingsOpen] = useState(false);
+    const listingID = [1, 3, 4] // Kasutaja toodete ID
+
+    const listedProducts = furnitureList.filter(
+        (item) => (item.id === listingID.find((id) => id === item.id))
+    );
 
     const router = useRouter();
 
@@ -31,7 +36,7 @@ export default function UserScreen() {
             {listingsOpen ? 
                 <ProductList 
                     type="list"
-                    furnitureData={furnitureList}
+                    furnitureData={listedProducts}
                     deleteButtonStyle="trash"
                 />
             :
