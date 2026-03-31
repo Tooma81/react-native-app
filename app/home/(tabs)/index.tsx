@@ -4,15 +4,38 @@ import ProductList from '@/components/product-list';
 import ProductPage from '@/components/product-page';
 import { TabBarStyle } from '@/constants/tab-bar-style';
 import { furnitureList } from '@/server/data/furniture';
-import { Tabs, useRouter } from 'expo-router';
-import React, { useState } from 'react';
+import { Tabs } from 'expo-router';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
+interface Furniture {
+    id: number;
+    name: string;
+    price: string;
+    description: string;
+    imageKey: string;
+}
+
 export default function HomeScreen() {
-    const router = useRouter();
+    const [productList, setProductList] = useState<Furniture[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     const[activeProductId, setActiveProductId] = useState(0); //Toote ID
+
+    useEffect(() => {
+        setProductList(furnitureList)
+        try {
+            setLoading(true);
+            setProductList(furnitureList)
+        } catch (err) {
+            const message = (err as Error).message;
+            console.error(message);
+        } finally {
+            setLoading(false);
+        }
+    }, [furnitureList])
 
     // Ava toote leht
     const handleOpenProduct = (productId: number) => {
@@ -51,7 +74,7 @@ export default function HomeScreen() {
                     <HomeCategories />
                     <ProductList 
                         onProductPress={handleOpenProduct}
-                        furnitureData={furnitureList}
+                        furnitureData={productList}
                     />
                 </View>
                 </>

@@ -1,6 +1,6 @@
 import { ProductListItemGrid } from '@/components/product-list-item-grid';
 import { useRouter } from 'expo-router';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { ProductListItem } from './product-list-item';
 
@@ -26,15 +26,6 @@ export default function ProductList({
     deleteButtonStyle = 'default',
 }: ProductListProps) {
     const router = useRouter();
-
-    const [furniture, setFurniture] = useState<Furniture[]>([]); //Toote nimekiri
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null); 
-    
-
-    useEffect(() => {
-        setFurniture(furnitureData)
-    }, [furnitureData]);
 
     /* 
     const loadData = async () => {
@@ -81,7 +72,7 @@ export default function ProductList({
     return (
         <View style={styles.productListContainer}>
             <FlatList
-                data={furniture}
+                data={furnitureData}
                 renderItem={renderProduct}
                 keyExtractor={(item, index) => index.toString()}
                 numColumns={type === 'list' ? 1 : 2} 
